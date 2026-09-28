@@ -2,9 +2,12 @@ import { imageHosts } from './image-hosts.config.mjs';
 
 const isStaticExport = process.env.STATIC_EXPORT === 'true' || process.env.NEXT_EXPORT === 'true';
 
+const isGithubPages = process.env.GITHUB_PAGES === 'true';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: isStaticExport ? 'export' : undefined,
+  basePath: isGithubPages ? '/ownstay_new' : undefined,
   productionBrowserSourceMaps: true,
   distDir: process.env.DIST_DIR || '.next',
   typescript: {
